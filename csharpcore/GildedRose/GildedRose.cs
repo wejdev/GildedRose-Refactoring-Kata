@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 
 namespace GildedRoseKata
 {
@@ -38,22 +37,24 @@ namespace GildedRoseKata
                 return;
             }
 
+            if (item.Name == "Conjured")
+            {
+                UpdateQuantityForConjured(item);
+                return;
+            }
+
             UpdateQualityForOthers(item);
         }
 
-        internal void UpdateQuantityForBackstage(Item item)
+        private void UpdateQuantityForBackstage(Item item)
         {
             if (item.Quality < 50)
             {
                 item.Quality++;
-
-                if (item.SellIn < 11)
-                    if (item.Quality < 50)
-                        item.Quality++;
-
-                if (item.SellIn < 6)
-                    if (item.Quality < 50)
-                        item.Quality++;
+                if (item.SellIn < 11 && item.Quality < 50)
+                    item.Quality++;
+                if (item.SellIn < 6 && item.Quality < 50)
+                    item.Quality++;
             }
 
             item.SellIn--;
@@ -61,7 +62,7 @@ namespace GildedRoseKata
                 item.Quality = 0;
         }
 
-        private static void UpdateQuantityForBrie(Item item)
+        private void UpdateQuantityForBrie(Item item)
         {
             if (item.Quality < 50)
                 item.Quality++;
@@ -72,15 +73,24 @@ namespace GildedRoseKata
         }
 
 
-        private static void UpdateQualityForOthers(Item item)
+        private void UpdateQualityForOthers(Item item)
         {
             if (item.Quality > 0)
                 item.Quality--;
 
             item.SellIn--;
-            if (item.SellIn < 0)
-                if (item.Quality > 0)
-                    item.Quality--;
+            if (item.SellIn < 0 && item.Quality > 0)
+                item.Quality--;
+        }
+
+        private void UpdateQuantityForConjured(Item item)
+        {
+            if (item.Quality > 0)
+                item.Quality -= 2;
+
+            item.SellIn--;
+            if (item.SellIn < 0 && item.Quality > 0)
+                item.Quality -= 2;
         }
     }
 }

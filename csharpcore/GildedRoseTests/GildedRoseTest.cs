@@ -47,12 +47,14 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "foo", SellIn = -3, Quality = -5}},
                     new List<Item> {new Item {Name = "foo", SellIn = -4, Quality = -5}}
                 },
+                
                 // Once the sell by date has passed, Quality degrades twice as fast
                 new object[]
                 {
                     new List<Item> {new Item {Name = "foo", SellIn = -1, Quality = 24}},
                     new List<Item> {new Item {Name = "foo", SellIn = -2, Quality = 22}}
                 },
+                
                 // The Quality of an item is never negative
                 new object[]
                 {
@@ -86,6 +88,7 @@ namespace GildedRoseTests
                         new Item {Name = "foo", SellIn = 99, Quality = 99},
                         new Item {Name = "foo", SellIn = -41, Quality = -50}}
                 },
+                
                 // “Aged Brie” actually increases in Quality the older it gets
                 new object[]
                 {
@@ -107,12 +110,14 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "Aged Brie", SellIn = -6, Quality = 49 }},
                     new List<Item> {new Item {Name = "Aged Brie", SellIn = -7, Quality = 50 }}
                 },
+                
                 // The Quality of an item is never more than 50
                 new object[]
                 {
                     new List<Item> {new Item {Name = "Aged Brie", SellIn = -6, Quality = 50 }},
                     new List<Item> {new Item {Name = "Aged Brie", SellIn = -7, Quality = 50 }}
                 },
+                
                 // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
                 new object[]
                 {
@@ -129,6 +134,7 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 55, Quality = 50 }},
                     new List<Item> {new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 55, Quality = 50 }}
                 },
+                
                 // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
                 // Quality increases by 2 when there are 10 days or less
                 new object[]
@@ -164,6 +170,7 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 4, Quality = 5 }},
                     new List<Item> {new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 3, Quality = 8}}
                 },
+                
                 // but Quality drops to 0 after the concert
                 new object[]
                 {
@@ -180,6 +187,7 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = -1, Quality = 5 }},
                     new List<Item> {new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = -2, Quality = 0 }}
                 },
+
                 // Mutants
                 new object[]
                 {
@@ -187,6 +195,22 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "foo", SellIn =0, Quality = 9}}
                 },
 
+                // Conjured
+                new object[]
+                {
+                    new List<Item> {new Item {Name = "Conjured", SellIn = 1, Quality = 10}},
+                    new List<Item> {new Item {Name = "Conjured", SellIn = 0, Quality = 8}}
+                },
+                new object[]
+                {
+                    new List<Item> {new Item {Name = "Conjured", SellIn = 100, Quality = 100}},
+                    new List<Item> {new Item {Name = "Conjured", SellIn = 99, Quality = 98}}
+                },
+                new object[]
+                {
+                    new List<Item> {new Item {Name = "Conjured", SellIn = -1, Quality = 10}},
+                    new List<Item> {new Item {Name = "Conjured", SellIn = -2, Quality = 6}}
+                },
             };
     }
 }
