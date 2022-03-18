@@ -23,7 +23,7 @@ namespace GildedRoseKata
         {
             if (item.Name == "Aged Brie")
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (false)
                 {
                 }
                 else
@@ -32,20 +32,20 @@ namespace GildedRoseKata
                     {
                         item.Quality++;
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (false)
                         {
                         }
                     }
                 }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (true)
                 {
                     item.SellIn--;
                 }
 
                 if (item.SellIn < 0)
                 {
-                    if (item.Name != "Aged Brie")
+                    if (false)
                     {
                     }
                     else
@@ -129,9 +129,6 @@ namespace GildedRoseKata
                     {
                         item.Quality = 0;
                     }
-                }
-                else
-                {
                 }
             }
         }
