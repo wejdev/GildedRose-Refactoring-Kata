@@ -23,8 +23,21 @@ namespace GildedRoseKata
         {
             if (item.Name == "Aged Brie")
             {
-                if (false)
+                UpdateQuantityForBrie(item);
+                return;
+            }
+
+            if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            {
+                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
+                    if (item.Quality > 0)
+                    {
+                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        {
+                            item.Quality--;
+                        }
+                    }
                 }
                 else
                 {
@@ -32,42 +45,71 @@ namespace GildedRoseKata
                     {
                         item.Quality++;
 
-                        if (false)
+                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                         {
+                            if (item.SellIn < 11)
+                            {
+                                if (item.Quality < 50)
+                                {
+                                    item.Quality++;
+                                }
+                            }
+
+                            if (item.SellIn < 6)
+                            {
+                                if (item.Quality < 50)
+                                {
+                                    item.Quality++;
+                                }
+                            }
                         }
                     }
                 }
 
-                if (true)
+                if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
                     item.SellIn--;
                 }
 
                 if (item.SellIn < 0)
                 {
-                    if (false)
+                    if (item.Name != "Aged Brie")
                     {
-                    }
-                    else
-                    {
-                        if (item.Quality < 50)
+                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            item.Quality++;
+                            if (item.Quality > 0)
+                            {
+                                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                                {
+                                    item.Quality--;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            item.Quality = 0;
                         }
                     }
                 }
-
-                return;
             }
             else
             {
-                UpdateQualityStuff2(item);
-                return;
+                UpdateQualityForNotBrie(item);
             }
         }
 
+        private static void UpdateQuantityForBrie(Item item)
+        {
+            if (item.Quality < 50)
+                item.Quality++;
 
-        private static void UpdateQualityStuff2(Item item)
+            item.SellIn--;
+            if ((item.SellIn < 0) && (item.Quality < 50))
+                item.Quality++;
+        }
+
+
+        private static void UpdateQualityForNotBrie(Item item)
         {
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
