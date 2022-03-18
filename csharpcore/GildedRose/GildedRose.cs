@@ -14,36 +14,29 @@ namespace GildedRoseKata
         {
             foreach (var item in Items)
             {
-                UpdateQualityStuff(item);
+                UpdateQualityByType(item);
             }
         }
 
-        private void UpdateQualityStuff(Item item)
+        void UpdateQualityByType(Item item)
         {
-            if (item.Name == "Aged Brie")
+            switch (item.Name)
             {
-                UpdateQuantityForBrie(item);
-                return;
+                case "Aged Brie":
+                    UpdateQuantityForBrie(item);
+                    return;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    UpdateQuantityForBackstage(item);
+                    return;
+                case "Sulfuras, Hand of Ragnaros":
+                    return;
+                case "Conjured":
+                    UpdateQuantityForConjured(item);
+                    return;
+                default:
+                    UpdateQualityForOthers(item);
+                    break;
             }
-
-            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                UpdateQuantityForBackstage(item);
-                return;
-            }
-
-            if (item.Name == "Sulfuras, Hand of Ragnaros")
-            {
-                return;
-            }
-
-            if (item.Name == "Conjured")
-            {
-                UpdateQuantityForConjured(item);
-                return;
-            }
-
-            UpdateQualityForOthers(item);
         }
 
         private void UpdateQuantityForBackstage(Item item)
@@ -51,8 +44,10 @@ namespace GildedRoseKata
             if (item.Quality < 50)
             {
                 item.Quality++;
+
                 if (item.SellIn < 11 && item.Quality < 50)
                     item.Quality++;
+
                 if (item.SellIn < 6 && item.Quality < 50)
                     item.Quality++;
             }
@@ -75,22 +70,22 @@ namespace GildedRoseKata
 
         private void UpdateQualityForOthers(Item item)
         {
-            if (item.Quality > 0)
-                item.Quality--;
-
-            item.SellIn--;
-            if (item.SellIn < 0 && item.Quality > 0)
-                item.Quality--;
+            UpdateQuantityByRate(item, 1);
         }
 
         private void UpdateQuantityForConjured(Item item)
         {
+            UpdateQuantityByRate(item, 2);
+        }
+
+        private void UpdateQuantityByRate(Item item, int rate)
+        {
             if (item.Quality > 0)
-                item.Quality -= 2;
+                item.Quality -= rate;
 
             item.SellIn--;
             if (item.SellIn < 0 && item.Quality > 0)
-                item.Quality -= 2;
+                item.Quality -= rate;
         }
     }
 }
