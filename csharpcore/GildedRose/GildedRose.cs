@@ -27,75 +27,33 @@ namespace GildedRoseKata
                 return;
             }
 
-            if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (item.Quality > 0)
-                    {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            item.Quality--;
-                        }
-                    }
-                }
-                else
-                {
+                UpdateQuantityForBackstage(item);
+                return;
+            }
+
+            UpdateQualityForNotBrieNorBackstage(item);
+        }
+
+        internal void UpdateQuantityForBackstage(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality++;
+
+                if (item.SellIn < 11)
                     if (item.Quality < 50)
-                    {
                         item.Quality++;
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (item.SellIn < 11)
-                            {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality++;
-                                }
-                            }
-
-                            if (item.SellIn < 6)
-                            {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality++;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    item.SellIn--;
-                }
-
-                if (item.SellIn < 0)
-                {
-                    if (item.Name != "Aged Brie")
-                    {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (item.Quality > 0)
-                            {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    item.Quality--;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            item.Quality = 0;
-                        }
-                    }
-                }
+                if (item.SellIn < 6)
+                    if (item.Quality < 50)
+                        item.Quality++;
             }
-            else
-            {
-                UpdateQualityForNotBrie(item);
-            }
+
+            item.SellIn--;
+            if (item.SellIn < 0)
+                item.Quality = 0;
         }
 
         private static void UpdateQuantityForBrie(Item item)
@@ -109,42 +67,13 @@ namespace GildedRoseKata
         }
 
 
-        private static void UpdateQualityForNotBrie(Item item)
+        private static void UpdateQualityForNotBrieNorBackstage(Item item)
         {
-            if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (item.Quality > 0)
             {
-                if (item.Quality > 0)
+                if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.Quality--;
-                    }
-                }
-            }
-            else
-            {
-                if (item.Quality < 50)
-                {
-                    item.Quality++;
-
-                    if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                    {
-                        if (item.SellIn < 11)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality++;
-                            }
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality++;
-                            }
-                        }
-                    }
+                    item.Quality--;
                 }
             }
 
@@ -155,9 +84,9 @@ namespace GildedRoseKata
 
             if (item.SellIn < 0)
             {
-                if (item.Name != "Aged Brie")
+                if (true)
                 {
-                    if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                    if (true)
                     {
                         if (item.Quality > 0)
                         {
@@ -166,10 +95,6 @@ namespace GildedRoseKata
                                 item.Quality--;
                             }
                         }
-                    }
-                    else
-                    {
-                        item.Quality = 0;
                     }
                 }
             }
