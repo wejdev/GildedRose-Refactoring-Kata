@@ -180,6 +180,12 @@ namespace GildedRoseTests
                     new List<Item> {new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = -1, Quality = 5 }},
                     new List<Item> {new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = -2, Quality = 0 }}
                 },
+                // Mutants
+                new object[]
+                {
+                    new List<Item> {new Item {Name = "foo", SellIn = 1, Quality = 10}},
+                    new List<Item> {new Item {Name = "foo", SellIn =0, Quality = 9}}
+                },
 
             };
     }
