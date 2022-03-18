@@ -33,7 +33,12 @@ namespace GildedRoseKata
                 return;
             }
 
-            UpdateQualityForNotBrieNorBackstage(item);
+            if (item.Name == "Sulfuras, Hand of Ragnaros")
+            {
+                return;
+            }
+
+            UpdateQualityForOthers(item);
         }
 
         internal void UpdateQuantityForBackstage(Item item)
@@ -67,37 +72,15 @@ namespace GildedRoseKata
         }
 
 
-        private static void UpdateQualityForNotBrieNorBackstage(Item item)
+        private static void UpdateQualityForOthers(Item item)
         {
             if (item.Quality > 0)
-            {
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    item.Quality--;
-                }
-            }
+                item.Quality--;
 
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                item.SellIn--;
-            }
-
+            item.SellIn--;
             if (item.SellIn < 0)
-            {
-                if (true)
-                {
-                    if (true)
-                    {
-                        if (item.Quality > 0)
-                        {
-                            if (item.Name != "Sulfuras, Hand of Ragnaros")
-                            {
-                                item.Quality--;
-                            }
-                        }
-                    }
-                }
-            }
+                if (item.Quality > 0)
+                    item.Quality--;
         }
     }
 }
