@@ -11,9 +11,12 @@ namespace GildedRoseTests
         {
             var app = new GildedRose(items);
             app.UpdateQuality();
-            Assert.Equal(expected[0].Name, items[0].Name);
-            Assert.Equal(expected[0].Quality, items[0].Quality);
-            Assert.Equal(expected[0].SellIn, items[0].SellIn);
+            for (var i = 0; i < items.Count; i++)
+            {
+                Assert.Equal(expected[i].Name, items[i].Name);
+                Assert.Equal(expected[i].Quality, items[i].Quality);
+                Assert.Equal(expected[i].SellIn, items[i].SellIn);
+            }
         }
 
         public static IEnumerable<object[]> ItemTestData =>
@@ -43,6 +46,13 @@ namespace GildedRoseTests
                 {
                     new List<Item> {new Item {Name = "foo", SellIn = -3, Quality = -5}},
                     new List<Item> {new Item {Name = "foo", SellIn = -4, Quality = -5}}
+                },
+                new object[]
+                {
+                    new List<Item> {new Item {Name = "foo", SellIn = 100, Quality = 100},
+                                    new Item {Name = "foo", SellIn =-40, Quality = -50}},
+                    new List<Item> {new Item {Name = "foo", SellIn = 99, Quality = 99},
+                                    new Item {Name = "foo", SellIn = -41, Quality = -50}}
                 },
                 new object[]
                 {
