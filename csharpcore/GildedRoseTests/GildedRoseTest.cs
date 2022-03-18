@@ -20,7 +20,7 @@ namespace GildedRoseTests
         }
 
         public static IEnumerable<object[]> ItemTestData =>
-            new List<object[]>
+            new List<object[]>  
             {
                 new object[]
                 {
